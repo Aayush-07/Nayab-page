@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Just For You 💛</title>
+
+<style>
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+  overflow:hidden;
+}
+
+.card{
+  background:white;
+  padding:25px 20px;
+  border-radius:20px;
+  box-shadow:0 10px 30px rgba(0,0,0,0.2);
+  text-align:center;
+  width:90%;
+  max-width:420px;
+  animation: fadeIn 0.5s ease;
+}
+
+h2{
+  margin-bottom:20px;
+  font-size:22px;
+}
+
+button{
+  padding:12px 22px;
+  margin:8px;
+  border:none;
+  border-radius:30px;
+  font-size:16px;
+  cursor:pointer;
+  transition:0.3s;
+}
+
+button:active{
+  transform:scale(0.95);
+}
+
+.yes{
+  background:#ff4b7d;
+  color:white;
+}
+
+.no{
+  background:#e0e0e0;
+}
+
+.hidden{
+  display:none;
+}
+
+.final{
+  font-size:18px;
+  line-height:1.6;
+}
+
+.heart{
+  position:fixed;
+  font-size:20px;
+  animation: float 4s linear infinite;
+  opacity:0.6;
+}
+
+@keyframes float{
+  from{
+    transform: translateY(100vh);
+  }
+  to{
+    transform: translateY(-10vh);
+  }
+}
+
+@keyframes fadeIn{
+  from{opacity:0; transform:translateY(20px)}
+  to{opacity:1; transform:translateY(0)}
+}
+</style>
+</head>
+
+<body>
+
+<div class="card">
+  <h2 id="q1">Maan bhi jao na 🥺</h2>
+  
+  <div id="btn1">
+    <button class="yes" onclick="yes1()">Yes</button>
+    <button class="no" onclick="no1()">No</button>
+  </div>
+
+  <div id="q2" class="hidden">
+    <h2>Ese kaise nahi manogi 😏</h2>
+    <button class="yes" onclick="yes2()">Mannna padega</button>
+    <button class="no" id="runaway">No</button>
+  </div>
+
+  <div id="final" class="hidden final">
+    Aajao DM mai chup chaap 😌<br><br>
+    Tum to apni ho dumboo!! ❤️<br><br>
+    Ab gussa khatam? 😄
+  </div>
+</div>
+
+<script>
+function yes1(){
+  document.getElementById('q1').classList.add('hidden');
+  document.getElementById('btn1').classList.add('hidden');
+  document.getElementById('final').classList.remove('hidden');
+  hearts();
+}
+
+function no1(){
+  document.getElementById('q1').classList.add('hidden');
+  document.getElementById('btn1').classList.add('hidden');
+  document.getElementById('q2').classList.remove('hidden');
+}
+
+function yes2(){
+  document.getElementById('q2').classList.add('hidden');
+  document.getElementById('final').classList.remove('hidden');
+  hearts();
+}
+
+const runaway = document.getElementById('runaway');
+
+runaway.addEventListener('touchstart', moveButton);
+runaway.addEventListener('mouseover', moveButton);
+
+function moveButton(){
+  const i = Math.floor(Math.random()*70);
+  const j = Math.floor(Math.random()*70);
+  runaway.style.position='fixed';
+  runaway.style.left = i + 'vw';
+  runaway.style.top = j + 'vh';
+}
+
+function hearts(){
+  for(let i=0;i<20;i++){
+    let heart = document.createElement('div');
+    heart.innerHTML='❤️';
+    heart.classList.add('heart');
+    heart.style.left = Math.random()*100 + 'vw';
+    heart.style.animationDuration = (Math.random()*2+3) + 's';
+    document.body.appendChild(heart);
+
+    setTimeout(()=>{
+      heart.remove();
+    },4000);
+  }
+}
+</script>
+
+</body>
+</html>
